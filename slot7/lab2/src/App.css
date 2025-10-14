@@ -1,0 +1,320 @@
+/* App.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #2a2a2a !important;
+  padding: 1rem 0;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white !important;
+  letter-spacing: 0.5px;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin: 0 0.5rem;
+  transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: white !important;
+}
+
+.search-input {
+  background-color: white;
+  border: none;
+  border-radius: 3px 0 0 3px;
+  padding: 0.5rem 1rem;
+  width: 200px;
+}
+
+.btn-search {
+  background-color: #dc3545;
+  border: none;
+  border-radius: 0 3px 3px 0;
+  padding: 0.5rem 1rem;
+}
+
+.btn-search:hover {
+  background-color: #c82333;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+
+.hero-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+  width: 90%;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  line-height: 1.6;
+}
+
+.carousel-control-prev-btn,
+.carousel-control-next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.3);
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 3;
+  transition: background-color 0.3s;
+}
+
+.carousel-control-prev-btn {
+  left: 20px;
+}
+
+.carousel-control-next-btn {
+  right: 20px;
+}
+
+.carousel-control-prev-btn:hover,
+.carousel-control-next-btn:hover {
+  background-color: rgba(0,0,0,0.5);
+}
+
+/* Menu Section */
+.menu-section {
+  background-color: #3a3a3a;
+  padding: 4rem 0;
+}
+
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.pizza-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.pizza-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.pizza-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.pizza-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge-sale,
+.badge-new {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 15px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.badge-sale {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.badge-new {
+  background-color: #17a2b8;
+  color: #000;
+}
+
+.pizza-info {
+  padding: 1.5rem;
+  text-align: center;
+  color: #333;
+}
+
+.pizza-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.pizza-price {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 8px;
+}
+
+.btn-buy {
+  width: 100%;
+  background-color: #2a2a2a;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-buy:hover {
+  background-color: #1a1a1a;
+}
+
+/* Booking Section */
+.booking-section {
+  background-color: #4a4a4a;
+  padding: 4rem 0;
+}
+
+.booking-form {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.booking-input,
+.booking-textarea {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.booking-input:focus,
+.booking-textarea:focus {
+  outline: none;
+  border-color: #ffc107;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.booking-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn-send-message {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+  padding: 0.75rem 2.5rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+}
+
+.btn-send-message:hover {
+  background-color: #e0a800;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .search-input {
+    width: 150px;
+  }
+
+  .carousel-control-prev-btn,
+  .carousel-control-next-btn {
+    font-size: 2rem;
+    padding: 0.3rem 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .pizza-image-wrapper {
+    height: 180px;
+  }
+}
