@@ -1,1 +1,11 @@
-node_modules
+**/node_modules/
+**/build/
+**/.env
+.vscode/
+.github/
+
+# Exclude GitHub instructions file (for internal use only)
+GITHUB_INSTRUCTIONS.md
+
+# Exclude student code files (students should submit via separate process)
+**/exercise*.js
