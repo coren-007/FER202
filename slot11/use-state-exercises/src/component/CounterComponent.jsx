@@ -1,3 +1,4 @@
+//ex1
 //component CounterComponent.jsx use State to create a counter with increment and decrement, reset buttons  
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';

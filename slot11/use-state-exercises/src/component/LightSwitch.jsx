@@ -1,3 +1,4 @@
+//ex2
 //LightSwitch component using useState to toggle light on and off
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';

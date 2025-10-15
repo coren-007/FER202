@@ -6,6 +6,8 @@ import LightSwitch from './component/LightSwitch';
 import LoginForm from './component/LoginForm';
 import LoginForm2 from './component/LoginForm2';
 import SearchItem from './component/SearchItem';
+import SearchAccount from './component/SearchAccount';
+import RegistrationForm from './component/RegistrationForm';
 
 function App() {
   return (
@@ -29,6 +31,14 @@ function App() {
         <hr />
         <h2>Search Item</h2>
         <SearchItem />
+
+        <hr />
+        <h2>Search Account</h2>
+        <SearchAccount />
+
+        <hr />
+        <h2>Registration Form</h2>
+        <RegistrationForm />
       </div>
     </div>
   );
