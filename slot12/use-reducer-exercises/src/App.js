@@ -4,10 +4,9 @@ import './App.css';
 import CounterComponent from './component/CounterComponent';
 import ToggleComponent from './component/ToggleComponent';
 import LoginForm from './component/LoginForm';
-import LoginForm2 from './component/LoginForm2';
+import SignUpForm from './component/SignUpForm';
 import QuestionBank from './component/QuestionBank';
-import SearchAccount from './component/SearchAccount';
-import RegistrationForm from './component/RegistrationForm';
+import QuestionBankAdvanced from './component/QuestionBankAdvanced';
 
 function App() {
   return (
@@ -23,22 +22,19 @@ function App() {
         <hr />
         <h2>Login Form</h2>
         <LoginForm />
-        
+
         <hr />
-        <h2>Login Form 2</h2>
-        <LoginForm2 />
+        <h2>Sign Up Form</h2>
+        <SignUpForm />
         
         <hr />
         <h2>Question Bank</h2>
         <QuestionBank />
 
         <hr />
-        <h2>Search Account</h2>
-        <SearchAccount />
-
-        <hr />
-        <h2>Registration Form</h2>
-        <RegistrationForm />
+        <h2>Question Bank Advanced</h2>
+        <QuestionBankAdvanced />
+        
       </div>
     </div>
   );

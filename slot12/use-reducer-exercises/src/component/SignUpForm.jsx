@@ -1,11 +1,13 @@
-//ex3
+// ex4
 import React, { useReducer } from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 
 // Khởi tạo trạng thái ban đầu
 const initialState = {
+  fullName: '',
   email: '',
   password: '',
+  confirmPassword: '',
   errors: {},
   isSubmitting: false,
   submitSuccess: false,
@@ -18,7 +20,7 @@ function reducer(state, action) {
       return {
         ...state,
         [action.field]: action.value,
-        errors: { ...state.errors, [action.field]: '' }, // Clear error khi nhập
+        errors: { ...state.errors, [action.field]: '' },
       };
     case 'SET_ERRORS':
       return { ...state, errors: action.errors, isSubmitting: false };
@@ -33,20 +35,28 @@ function reducer(state, action) {
   }
 }
 
-function LoginForm() {
+function SignUpForm() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleChange = (e) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     dispatch({
       type: 'SET_FIELD',
       field: e.target.name,
-      value: e.target.value,
+      value: value,
     });
   };
 
   const validateForm = () => {
     const errors = {};
-    
+
+    // Validate full name
+    if (!state.fullName.trim()) {
+      errors.fullName = 'Họ tên không được để trống';
+    } else if (state.fullName.trim().length < 3) {
+      errors.fullName = 'Họ tên phải có ít nhất 3 ký tự';
+    }
+
     // Validate email
     if (!state.email.trim()) {
       errors.email = 'Email không được để trống';
@@ -57,8 +67,17 @@ function LoginForm() {
     // Validate password
     if (!state.password) {
       errors.password = 'Mật khẩu không được để trống';
-    } else if (state.password.length < 6) {
-      errors.password = 'Mật khẩu phải có ít nhất 6 ký tự';
+    } else if (state.password.length < 8) {
+      errors.password = 'Mật khẩu phải có ít nhất 8 ký tự';
+    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(state.password)) {
+      errors.password = 'Mật khẩu phải chứa chữ hoa, chữ thường và số';
+    }
+
+    // Validate confirm password
+    if (!state.confirmPassword) {
+      errors.confirmPassword = 'Vui lòng xác nhận mật khẩu';
+    } else if (state.password !== state.confirmPassword) {
+      errors.confirmPassword = 'Mật khẩu xác nhận không khớp';
     }
 
     return errors;
@@ -66,9 +85,9 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const errors = validateForm();
-    
+
     if (Object.keys(errors).length > 0) {
       dispatch({ type: 'SET_ERRORS', errors });
       return;
@@ -78,12 +97,13 @@ function LoginForm() {
 
     // Giả lập API call
     setTimeout(() => {
-      console.log('Login data:', {
+      console.log('Sign up data:', {
+        fullName: state.fullName,
         email: state.email,
         password: state.password,
       });
       dispatch({ type: 'SUBMIT_SUCCESS' });
-    }, 1000);
+    }, 1500);
   };
 
   const handleReset = () => {
@@ -94,16 +114,32 @@ function LoginForm() {
     <Card className="shadow-sm">
       <Card.Body className="p-4">
         <Card.Title className="text-center mb-4 fs-4 fw-bold">
-          Đăng Nhập
+          Đăng Ký Tài Khoản
         </Card.Title>
 
         {state.submitSuccess && (
           <Alert variant="success" className="mb-3">
-            Đăng nhập thành công! Email: {state.email}
+            Đăng ký thành công! Chào mừng {state.fullName}!
           </Alert>
         )}
 
         <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Họ và Tên</Form.Label>
+            <Form.Control
+              type="text"
+              name="fullName"
+              placeholder="Nhập họ và tên đầy đủ"
+              value={state.fullName}
+              onChange={handleChange}
+              isInvalid={!!state.errors.fullName}
+              disabled={state.isSubmitting}
+            />
+            <Form.Control.Feedback type="invalid">
+              {state.errors.fullName}
+            </Form.Control.Feedback>
+          </Form.Group>
+
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -125,7 +161,7 @@ function LoginForm() {
             <Form.Control
               type="password"
               name="password"
-              placeholder="Nhập mật khẩu"
+              placeholder="Tạo mật khẩu"
               value={state.password}
               onChange={handleChange}
               isInvalid={!!state.errors.password}
@@ -133,6 +169,25 @@ function LoginForm() {
             />
             <Form.Control.Feedback type="invalid">
               {state.errors.password}
+            </Form.Control.Feedback>
+            <Form.Text className="text-muted">
+              Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số.
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Xác nhận Mật khẩu</Form.Label>
+            <Form.Control
+              type="password"
+              name="confirmPassword"
+              placeholder="Nhập lại mật khẩu"
+              value={state.confirmPassword}
+              onChange={handleChange}
+              isInvalid={!!state.errors.confirmPassword}
+              disabled={state.isSubmitting}
+            />
+            <Form.Control.Feedback type="invalid">
+              {state.errors.confirmPassword}
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -143,7 +198,7 @@ function LoginForm() {
               className="flex-grow-1"
               disabled={state.isSubmitting}
             >
-              {state.isSubmitting ? 'Đang xử lý...' : 'Đăng Nhập'}
+              {state.isSubmitting ? 'Đang xử lý...' : 'Đăng Ký'}
             </Button>
             <Button
               variant="secondary"
@@ -160,4 +215,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default SignUpForm;
