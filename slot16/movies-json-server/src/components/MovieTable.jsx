@@ -5,12 +5,13 @@ import { useMovieState, useMovieDispatch } from '../contexts/MovieContext';
 const MovieTable = () => {
   const state = useMovieState();
   const { dispatch, confirmDelete } = useMovieDispatch();
-  const { visibleMovies: movies, loading, movieToDelete, showDeleteModal } = state;
+  const { visibleMovies: movies, loading, movieToDelete, showDeleteModal, showDetailsModal, movieDetails } = state;
 
   const genreMap = { 1: 'Sci-Fi', 2: 'Comedy', 3: 'Drama', 4: 'Horror', 5: 'Romance', 6: 'Action', 7: 'Thriller' };
 
   const handleEditClick = (movie) => { dispatch({ type: 'OPEN_EDIT_MODAL', payload: movie }); };
   const handleDeleteClick = (movie) => { dispatch({ type: 'OPEN_DELETE_MODAL', payload: movie }); };
+  const handleViewDetails = (movie) => { dispatch({ type: 'OPEN_DETAILS_MODAL', payload: movie }); };
 
   return (
     <>
@@ -46,6 +47,7 @@ const MovieTable = () => {
                   <td>{genreName}</td>
                   <td>{movie.duration} phút</td>
                   <td>
+                    <Button variant="info" size="sm" onClick={() => handleViewDetails(movie)} className="me-2">Xem chi tiết</Button>
                     <Button variant="primary" size="sm" onClick={() => handleEditClick(movie)} className="me-2">Sửa</Button>
                     <Button variant="danger" size="sm" onClick={() => handleDeleteClick(movie)}>Xóa</Button>
                   </td>
@@ -66,6 +68,29 @@ const MovieTable = () => {
         <Modal.Footer>
           <Button variant="secondary" onClick={() => dispatch({ type: 'CLOSE_DELETE_MODAL' })}>Hủy bỏ</Button>
           <Button variant="danger" onClick={() => confirmDelete(movieToDelete.id)}>Xác nhận Xóa</Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showDetailsModal} onHide={() => dispatch({ type: 'CLOSE_DETAILS_MODAL' })} size="md">
+        <Modal.Header closeButton>
+          <Modal.Title>Chi tiết Phim</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {movieDetails && (
+            <div className="d-flex">
+              <Image src={movieDetails.avatar} alt={movieDetails.title} rounded style={{ width: 120, height: 120, objectFit: 'cover', marginRight: 16 }} />
+              <div>
+                <h5 className="mb-2">{movieDetails.title}</h5>
+                <div><strong>Thể loại:</strong> {genreMap[movieDetails.genreId] || 'Unknown'}</div>
+                <div><strong>Năm:</strong> {movieDetails.year}</div>
+                <div><strong>Thời lượng:</strong> {movieDetails.duration} phút</div>
+                {movieDetails.description && (<div className="mt-2"><strong>Mô tả:</strong> {movieDetails.description}</div>)}
+              </div>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => dispatch({ type: 'CLOSE_DETAILS_MODAL' })}>Đóng</Button>
         </Modal.Footer>
       </Modal>
     </>

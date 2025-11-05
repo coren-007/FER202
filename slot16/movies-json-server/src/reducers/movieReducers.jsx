@@ -6,6 +6,9 @@ export const initialMovieState = {
   showEditModal: false,
   showDeleteModal: false,
   movieToDelete: null,
+  // Details modal state
+  showDetailsModal: false,
+  movieDetails: null,
   filters: { search: '', genreId: '', minDuration: '', maxDuration: '', sort: 'asc' }
 };
 
@@ -25,6 +28,10 @@ export const movieReducer = (state, action) => {
       return { ...state, movieToDelete: action.payload, showDeleteModal: true };
     case 'CLOSE_DELETE_MODAL':
       return { ...state, movieToDelete: null, showDeleteModal: false };
+    case 'OPEN_DETAILS_MODAL':
+      return { ...state, movieDetails: action.payload, showDetailsModal: true };
+    case 'CLOSE_DETAILS_MODAL':
+      return { ...state, movieDetails: null, showDetailsModal: false };
     case 'RESET_FORM':
       return { ...state, currentMovie: initialMovieState.currentMovie, isEditing: null, showEditModal: false };
     case 'UPDATE_FILTER':
