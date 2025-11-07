@@ -11,6 +11,14 @@
    const res = await API.get('/users')
    return res.data
  }
+ export const queryUsers = async (params = {}) => {
+   const res = await API.get('/users', { params })
+   return res.data
+ }
+ export const updateUserApi = async (id, payload) => {
+   const res = await API.patch(`/users/${id}`, payload)
+   return res.data
+ }
 
  // Payments CRUD
  export const getPayments = async (params = {}) => {

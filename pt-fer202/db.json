@@ -37,6 +37,14 @@
       "courseName": "Mobile Programming",
       "amount": 4200000,
       "date": "2025-10-10"
+    },
+    {
+      "userId": "4",
+      "semester": "Spring 2024",
+      "courseName": "Test",
+      "amount": 1500000,
+      "date": "2000-11-11",
+      "id": "iVRzhgd"
     }
   ]
 }
