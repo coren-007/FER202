@@ -26,6 +26,8 @@ export default function NavigationHeader() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/users">User Management</Nav.Link>
+            <Nav.Link as={Link} to="/rtk-users">Users RTK</Nav.Link>
+            <Nav.Link as={Link} to="/rtk-payments">Payments RTK</Nav.Link>
             <Navbar.Text className="me-3">Signed in as: <strong>{fullName}</strong></Navbar.Text>
             <Button variant="outline-light" onClick={handleLogout}>Logout</Button>
           </Nav>
